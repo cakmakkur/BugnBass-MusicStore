@@ -11,6 +11,7 @@ BugnBass is an e-commerce-style application designed for music instrument retail
 It demonstrates a complete full-stack architecture with a Java Spring Boot backend and a React frontend application.
 
 Users can:
+
 - Browse and search products
 - Add items to cart
 - Place and manage orders
@@ -24,6 +25,7 @@ Users can:
 I contributed approximately **50% of the implementation**, focusing primarily on core application logic and database design.
 
 Key contributions:
+
 - Designed and implemented REST APIs using **Spring Boot**
 - Developed core business logic for:
   - product management
@@ -42,26 +44,29 @@ Key contributions:
 
 ## Architecture
 
-- Backend: RESTful API built with Spring Boot  
-- Frontend: React SPA consuming backend APIs  
-- Database: PostgreSQL relational database  
+- Backend: RESTful API built with Spring Boot
+- Frontend: React SPA consuming backend APIs
+- Database: PostgreSQL relational database
 
 ---
 
 ## Tech Stack
 
 ### Backend
+
 - Java 21
 - Spring Boot
 - Maven
 - PostgreSQL
 
 ### Frontend
+
 - React / TypeScript
 - Vite
 - npm
 
 ### Tools & Workflow
+
 - Git (version control)
 - CI/CD (GitHub Workflows)
 - RESTful API design
@@ -70,13 +75,13 @@ Key contributions:
 
 ## Features
 
-- Product catalog with detailed views  
-- Shopping cart functionality  
-- Order creation and management  
-- Product reviews and ratings  
-- RESTful API for frontend-backend communication  
-- Admin-level operations for managing products and orders  
-- Full-stack integration between frontend and backend  
+- Product catalog with detailed views
+- Shopping cart functionality
+- Order creation and management
+- Product reviews and ratings
+- RESTful API for frontend-backend communication
+- Admin-level operations for managing products and orders
+- Full-stack integration between frontend and backend
 
 ---
 
@@ -90,15 +95,17 @@ Key contributions:
 
 ## Build & Run
 
-### Prerequisites
+### Local Development
+
+#### Prerequisites
 
 - JDK 21+
 - Maven
-- PostgreSQL (running on port 5432)
+- PostgreSQL
 - Node.js
 - npm
 
-### 1. Database Setup
+#### 1. Database Setup
 
 Create the database:
 
@@ -106,26 +113,22 @@ Create the database:
 CREATE DATABASE bugnbass OWNER bugnbass;
 ```
 
-### 2. Run Backend
-
-#### Option A — Run with Maven (development)
+#### 2. Start Backend
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-Backend will start on: http://localhost:8080
+Backend will be available at:
 
-#### Option B — Build and run JAR
-
-```bash
-cd backend
-mvn clean package
-java -jar target/backend-0.0.1-SNAPSHOT.jar
+```text
+http://localhost:8080
 ```
 
-### 3. Run Frontend
+#### 3. Start Frontend
+
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -133,15 +136,65 @@ npm install
 npm run dev
 ```
 
-Frontend will start on: http://localhost:5173
+Frontend will be available at:
 
-### Notes
-
-- The database will be initialized automatically on first run  
-- Ensure PostgreSQL is running before starting the backend  
+```text
+http://localhost:5173
+```
 
 ---
 
+### Docker Deployment
+
+#### Prerequisites
+
+- Docker
+- Docker Compose
+- Maven
+
+#### 1. Build the Application
+
+```bash
+cd backend
+mvn clean package
+```
+
+This builds the Spring Boot application and bundles the frontend into the generated JAR.
+
+#### 2. Start Docker Containers
+
+From the project root:
+
+```bash
+docker compose up --build
+```
+
+The following containers will be started:
+
+- Spring Boot application
+- PostgreSQL database
+
+Application URL:
+
+```text
+http://localhost:8080
+```
+
+#### Persistent Storage
+
+- PostgreSQL data is stored in a Docker volume.
+- Product images are stored in the project's `product_images` directory through a Docker bind mount.
+
+---
+
+### Notes
+
+- The frontend is bundled into the Spring Boot application during packaging.
+- Database schema is initialized automatically on application startup.
+- PostgreSQL must be running before starting the application in local development mode.
+- Docker Compose automatically creates a dedicated network between the application and database containers.
+- For local development, the frontend can be run independently using Vite for hot reloading.
+
 ## Disclaimer
 
-This project was developed collaboratively as part of a team effort.  
+This project was developed collaboratively as part of a team effort.
